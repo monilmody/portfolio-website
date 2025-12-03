@@ -270,8 +270,6 @@
       background: #112240;
       border-radius: 12px;
       padding: 20px;
-      overflow-y: auto; /* Make container scrollable */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       border: 2px solid #64ffda;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       box-sizing: border-box;
@@ -330,6 +328,8 @@
         border-radius: 0;
         padding: 15px;
         border: none;
+        overflow-y: auto; /* Make container scrollable */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       }
 
       .chatbot-header {
@@ -391,6 +391,8 @@
       .chatbot-container {
         height: 400px;
         margin-top: calc(50vh - 200px);
+        overflow-y: auto; /* Make container scrollable */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       }
 
       .chatbot-frame {
