@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a192f'/%3E%3Cpath d='M30 50 Q40 30 60 30 Q80 30 80 50 Q80 70 60 70 L40 70 Q20 70 20 50 Q20 30 40 30' fill='%2364ffda'/%3E%3C/svg%3E">
-  <title>Monil Mody | AWS Cloud & DevOps Engineer</title>
+  <!-- Fixed viewport for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a192f'/%3E%3Cpath d='M30 50 Q40 30 60 30 Q80 30 80 50 Q80 70 60 70 L40 70 Q20 70 20 50 Q20 30 40 30' fill='%2364ffda'/%3E%3C/svg%3E">
+  
+  <title>Monil Samir Mody | AWS Cloud & DevOps Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -16,341 +16,632 @@
       background-color: #0a192f;
       color: #ccd6f6;
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
-
+    
+    /* FIXED RESPONSIVE HEADER */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(10, 25, 47, 0.95);
+      background: rgba(10, 25, 47, 0.98);
       backdrop-filter: blur(10px);
-      padding: 15px 30px;
+      padding: 12px 15px;
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+      box-sizing: border-box;
+      touch-action: manipulation;
     }
-
+    
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
+      flex-shrink: 1;
+      min-width: 0;
     }
-
+    
     .logo-svg {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       flex-shrink: 0;
     }
-
+    
     .logo-text {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #64ffda;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-
+    
+    /* Mobile menu button (hamburger) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #64ffda;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+      margin-left: 10px;
+    }
+    
     .nav-links {
       display: flex;
-      gap: 30px;
       align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
     }
-
+    
     .nav-links a {
       color: #ccd6f6;
       text-decoration: none;
       transition: color 0.3s;
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
-
+    
     .nav-links a:hover {
       color: #64ffda;
     }
-
+    
+    /* Chatbot button */
     .chatbot-btn {
       background: #64ffda;
       color: #0a192f;
       border: none;
-      padding: 8px 20px;
+      padding: 7px 15px;
       border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.3s;
       font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      white-space: nowrap;
     }
-
+    
     .chatbot-btn:hover {
       background: #52d3b0;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
     }
-
+    
+    /* MOBILE RESPONSIVE STYLES */
+    @media screen and (max-width: 768px) {
+      .site-header {
+        padding: 10px;
+        flex-wrap: wrap;
+      }
+      
+      .logo-container {
+        flex: 1;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      .logo-svg {
+        width: 30px;
+        height: 30px;
+      }
+      
+      /* Show mobile menu button */
+      .mobile-menu-btn {
+        display: block;
+        order: 2;
+      }
+      
+      /* Hide regular nav by default on mobile */
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 25, 47, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .nav-links a {
+        font-size: 1rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+      }
+      
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+      
+      .chatbot-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+      
+      /* Adjust header padding for mobile */
+      header {
+        padding: 120px 15px 80px;
+      }
+      
+      header h1 {
+        font-size: 2.2rem;
+      }
+      
+      header h3 {
+        font-size: 1.2rem;
+      }
+    }
+    
+    /* Tablet styles */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      .site-header {
+        padding: 12px 20px;
+      }
+      
+      .nav-links {
+        gap: 20px;
+      }
+      
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+      
+      .chatbot-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Adjust main header for fixed header */
     header {
+      padding: 150px 20px 100px;
       text-align: center;
-      padding: 100px 20px;
     }
-
+    
     header h1 {
       font-size: 3rem;
       color: #64ffda;
+      margin-bottom: 10px;
     }
-
-    header p {
-      max-width: 600px;
-      margin: 20px auto;
-      line-height: 1.6;
+    
+    /* Chatbot modal - responsive */
+    #chatbotModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 25, 47, 0.98);
+      z-index: 2000;
+      animation: fadeIn 0.3s ease;
+      touch-action: manipulation;
     }
-
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .chatbot-container {
+      position: relative;
+      width: 95%;
+      max-width: 800px;
+      height: 85vh;
+      margin: 7.5vh auto;
+      background: #112240;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid #64ffda;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-sizing: border-box;
+    }
+    
+    .chatbot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(100, 255, 218, 0.3);
+    }
+    
+    .chatbot-header h3 {
+      margin: 0;
+      color: #64ffda;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      color: #64ffda;
+      font-size: 24px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    
+    .close-btn:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+    
+    .chatbot-frame {
+      width: 100%;
+      height: calc(100% - 60px);
+      border: none;
+      border-radius: 8px;
+    }
+    
+    /* Mobile chatbot modal */
+    @media screen and (max-width: 768px) {
+      .chatbot-container {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        padding: 15px;
+        border: none;
+      }
+      
+      .chatbot-header {
+        padding: 10px 0;
+        margin-bottom: 10px;
+      }
+      
+      .chatbot-header h3 {
+        font-size: 1.1rem;
+      }
+      
+      .close-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 22px;
+      }
+      
+      .chatbot-frame {
+        height: calc(100vh - 70px);
+      }
+    }
+    
+    /* Rest of your existing styles */
     section {
       max-width: 900px;
-      margin: 80px auto;
+      margin: 60px auto;
       padding: 0 20px;
     }
-
+    
+    @media screen and (max-width: 768px) {
+      section {
+        padding: 0 15px;
+        margin: 40px auto;
+      }
+    }
+    
     h2 {
       color: #64ffda;
       border-bottom: 2px solid #64ffda;
       display: inline-block;
       margin-bottom: 20px;
     }
-
+    
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
     }
-
+    
+    @media screen and (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 8px;
+      }
+    }
+    
     .skill-item {
       background: #112240;
       padding: 10px;
       border-radius: 8px;
       text-align: center;
     }
-
+    
     .project {
       background: #112240;
       padding: 20px;
       border-radius: 8px;
       margin-bottom: 20px;
     }
-
+    
     footer {
       text-align: center;
       padding: 30px;
       background: #020c1b;
       color: #8892b0;
     }
-
+    
     a {
       color: #64ffda;
       text-decoration: none;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    
+    a:hover { text-decoration: underline; }
   </style>
 </head>
-
 <body>
 
-  <div class="site-header">
-    <div class="logo-container">
-      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" rx="20" fill="#0a192f" />
-        <path d="M30 50 Q40 30 60 30 Q80 30 80 50 Q80 70 60 70 L40 70 Q20 70 20 50 Q20 30 40 30" fill="#64ffda" />
-      </svg>
-      <span class="logo-text">DevOps Engineer With Ai Skills</span>
-    </div>
-
-    <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button class="chatbot-btn" onclick="openChatbot()">
-        <span style="font-size: 18px;">🤖</span> AI Assistant
-      </button>
-    </nav>
+<!-- Fixed Header with Mobile Menu -->
+<div class="site-header">
+  <div class="logo-container">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="20" fill="#0a192f"/>
+      <path d="M30 50 Q40 30 60 30 Q80 30 80 50 Q80 70 60 70 L40 70 Q20 70 20 50 Q20 30 40 30" fill="#64ffda"/>
+    </svg>
+    <span class="logo-text">Monil Mody</span>
   </div>
+  
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  
+  <nav class="nav-links" id="navLinks">
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <button class="chatbot-btn" onclick="openChatbot(); closeMobileMenu();">
+      <span style="font-size: 16px;">🤖</span> AI Assistant
+    </button>
+  </nav>
+</div>
 
-  <header>
-    <h1>Monil Samir Mody</h1>
-    <h3>AWS Cloud & DevOps Engineer</h3>
-    <p>Experienced in AWS infrastructure automation, CI/CD, and cloud cost optimization. Passionate about building
-      scalable, secure, and resilient architectures.</p>
-    <a href="Monil_Samir_Mody_Resume.pdf" target="_blank">📄 View Resume</a> |
-    <a href="#contact">📬 Contact</a>
-  </header>
+<!-- Chatbot Modal -->
+<div id="chatbotModal">
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>
+        <span style="font-size: 20px;">🤖</span>
+        Portfolio AI Assistant
+      </h3>
+      <button class="close-btn" onclick="closeChatbot()">×</button>
+    </div>
+    <iframe 
+      id="chatbotFrame"
+      class="chatbot-frame"
+      src="https://monilmody-portfolio-website.hf.space"
+      title="Portfolio AI Chatbot"
+      allow="microphone; camera"
+      sandbox="allow-scripts allow-same-origin allow-forms"
+    ></iframe>
+  </div>
+</div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Accomplished AWS Cloud Engineer with over 6 years of experience designing, deploying, and managing scalable cloud
-      solutions. Skilled in automating workflows and deploying applications using modern DevOps practices.</p>
-  </section>
+<header>
+  <h1>Monil Samir Mody</h1>
+  <h3>AWS Cloud & DevOps Engineer</h3>
+  <p>Experienced in AWS infrastructure automation, CI/CD, and cloud cost optimization. Passionate about building scalable, secure, and resilient architectures.</p>
+  <a href="Monil_Samir_Mody_Resume.pdf" target="_blank">📄 View Resume</a> |
+  <a href="#contact">📬 Contact</a>
+</header>
 
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-item">AWS | Terraform | Jenkins</div>
-      <div class="skill-item">Docker | Kubernetes | CI/CD</div>
-      <div class="skill-item">Python | Java | React</div>
-      <div class="skill-item">Ansible | SonarQube | GitHub</div>
-      <div class="skill-item">CloudWatch | Prometheus | Grafana</div>
-    </div>
-  </section>
+<!-- Rest of your content remains the same -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>Accomplished AWS Cloud Engineer with over 6 years of experience designing, deploying, and managing scalable cloud solutions. Skilled in automating workflows and deploying applications using modern DevOps practices.</p>
+</section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="project">
-      <h3>Preferred Equine – DevOps Engineer</h3>
-      <p>Designed CI/CD pipelines using Jenkins, Docker, and SonarQube. Managed AWS EC2, S3, and IAM roles to automate
-        deployments and reduce costs by 50%.</p>
-    </div>
-    <div class="project">
-      <h3>Cisco – Mid Software Developer</h3>
-      <p>Built notification systems on GCP Pub/Sub and developed Java APIs to automate data flows with Oracle databases.
-      </p>
-    </div>
-  </section>
+<section id="skills">
+  <h2>Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-item">AWS | Terraform | Jenkins</div>
+    <div class="skill-item">Docker | Kubernetes | CI/CD</div>
+    <div class="skill-item">Python | Java | React</div>
+    <div class="skill-item">Ansible | SonarQube | GitHub</div>
+    <div class="skill-item">CloudWatch | Prometheus | Grafana</div>
+  </div>
+</section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>🤖 Portfolio AI Chatbot</h3>
-      <p>Interactive AI assistant powered by Hugging Face & Gradio. Ask me anything about my portfolio!</p>
-      <div style="margin: 20px 0; text-align: center;">
-        <button onclick="openChatbot()" style="
-        background: #64ffda;
-        color: #0a192f;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-weight: bold;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
-      ">Open AI Chatbot</button>
-      </div>
-    </div>
-    <div class="project">
-      <h3>Swiftrails</h3>
-      <p>CI/CD pipeline on GitHub using Jenkins and Docker. Deployed EC2 instances with Node.js and Tomcat.</p>
-    </div>
-    <div class="project">
-      <h3>NFT Marketplace</h3>
-      <p>Built a React SPA for NFT trading using Solidity smart contracts on Ethereum.</p>
-    </div>
-    <div class="project">
-      <h3>Chatly Messenger</h3>
-      <p>Developed a full-featured Android & iOS messenger app with privacy-focused features and a custom backend.</p>
-    </div>
-  </section>
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="project">
+    <h3>Preferred Equine – DevOps Engineer</h3>
+    <p>Designed CI/CD pipelines using Jenkins, Docker, and SonarQube. Managed AWS EC2, S3, and IAM roles to automate deployments and reduce costs by 50%.</p>
+  </div>
+  <div class="project">
+    <h3>Cisco – Mid Software Developer</h3>
+    <p>Built notification systems on GCP Pub/Sub and developed Java APIs to automate data flows with Oracle databases.</p>
+  </div>
+</section>
 
-  <div id="chatbotModal" style="
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 25, 47, 0.95);
-  z-index: 1000;
-">
-    <div style="
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    height: 80vh;
-    margin: 5vh auto;
-    background: #112240;
-    border-radius: 12px;
-    padding: 20px;
-  ">
-      <button onclick="closeChatbot()" style="
-      position: absolute;
-      top: 15px;
-      right: 15px;
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project">
+    <h3>🤖 Portfolio AI Chatbot</h3>
+    <p>Interactive AI assistant using Hugging Face & Gradio. Features Pushover notifications for urgent questions.</p>
+    <div style="margin: 15px 0;">
+      <strong>Tech:</strong> Python, Hugging Face Spaces, Gradio, Pushover API
+    </div>
+    <button onclick="openChatbot()" style="
       background: #64ffda;
       color: #0a192f;
       border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 6px;
       cursor: pointer;
-      z-index: 1001;
-    ">Close</button>
-
-      <iframe id="chatbotFrame" src="https://monilmody-portfolio-website.hf.space" style="
-        width: 100%;
-        height: calc(100% - 20px);
-        border: none;
-        border-radius: 8px;
-        margin-top: 10px;
-      " allow="microphone; camera"></iframe>
-    </div>
+      font-family: 'Poppins';
+      margin-top: 10px;
+      width: 100%;
+    ">💬 Try the Chatbot</button>
   </div>
+  
+  <div class="project">
+    <h3>Swiftrails</h3>
+    <p>CI/CD pipeline on GitHub using Jenkins and Docker. Deployed EC2 instances with Node.js and Tomcat.</p>
+  </div>
+  
+  <div class="project">
+    <h3>NFT Marketplace</h3>
+    <p>Built a React SPA for NFT trading using Solidity smart contracts on Ethereum.</p>
+  </div>
+  
+  <div class="project">
+    <h3>Chatly Messenger</h3>
+    <p>Developed a full-featured Android & iOS messenger app with privacy-focused features and custom backend.</p>
+  </div>
+</section>
 
-  <script>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>📧 <a href="mailto:monilmody9@gmail.com">monilmody9@gmail.com</a></p>
+  <p>🔗 <a href="https://www.linkedin.com/in/monil-m-335887b0" target="_blank">LinkedIn</a> | 
+      <a href="https://github.com/monilmody" target="_blank">GitHub</a> | 
+      <a href="http://www.youtube.com/@AWSwithMONIL" target="_blank">YouTube</a></p>
+</section>
 
-    (function () {
-      // Prevent zoom on input focus
-      const metaViewport = document.querySelector('meta[name="viewport"]');
+<footer>
+  <p>© 2025 Monil Samir Mody | Built with ❤️ and AWS</p>
+</footer>
 
-      function preventZoom() {
-        metaViewport.setAttribute('content',
-          'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
-        );
-      }
+<script>
+// Mobile menu functions
+function toggleMobileMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('active');
+}
 
-      function allowZoom() {
-        metaViewport.setAttribute('content',
-          'width=device-width, initial-scale=1.0, viewport-fit=cover'
-        );
-      }
+function closeMobileMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.remove('active');
+}
 
-      function openChatbot() {
-        document.getElementById('chatbotModal').style.display = 'block';
-        // Refresh the iframe to ensure it loads fresh
-        document.getElementById('chatbotFrame').src = document.getElementById('chatbotFrame').src;
-      }
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+  const navLinks = document.getElementById('navLinks');
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const header = document.querySelector('.site-header');
+  
+  if (!header.contains(event.target) && navLinks.classList.contains('active')) {
+    closeMobileMenu();
+  }
+});
 
-      function closeChatbot() {
-        document.getElementById('chatbotModal').style.display = 'none';
-      }
+// Chatbot functions
+function openChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  const frame = document.getElementById('chatbotFrame');
+  
+  // Prevent zoom on mobile
+  document.querySelector('meta[name="viewport"]').setAttribute('content', 
+    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
+  );
+  
+  // Show modal
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('chatbot-open');
+  
+  // Close mobile menu if open
+  closeMobileMenu();
+  
+  // Refresh iframe
+  if (frame) {
+    const currentSrc = frame.src;
+    frame.src = '';
+    setTimeout(() => {
+      frame.src = currentSrc;
+    }, 100);
+  }
+}
 
-      // Close modal when clicking outside
-      document.getElementById('chatbotModal').addEventListener('click', function (e) {
-        if (e.target.id === 'chatbotModal') {
-          closeChatbot();
-        }
+function closeChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  
+  // Allow zoom again
+  document.querySelector('meta[name="viewport"]').setAttribute('content', 
+    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
+  );
+  
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+  document.body.classList.remove('chatbot-open');
+}
+
+// Close modal when clicking outside
+document.getElementById('chatbotModal').addEventListener('click', function(e) {
+  if (e.target.id === 'chatbotModal') {
+    closeChatbot();
+  }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeChatbot();
+    closeMobileMenu();
+  }
+});
+
+// Prevent zoom on mobile inputs
+document.addEventListener('touchstart', function(event) {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: 'smooth'
       });
-
-      // Close with Escape key
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          closeChatbot();
-        }
-      });
-    })();
-  </script>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>📧 <a href="mailto:monilmody9@gmail.com">monilmody9@gmail.com</a></p>
-    <p>🔗 <a href="https://www.linkedin.com/in/monil-m-335887b0" target="_blank">LinkedIn</a> |
-      <a href="https://github.com/monilmody" target="_blank">GitHub</a> |
-      <a href="http://www.youtube.com/@AWSwithMONIL" target="_blank">YouTube</a>
-    </p>
-  </section>
-
-  <footer>
-    <p>© 2025 Monil Samir Mody | Built with ❤️ and AWS</p>
-  </footer>
+      closeMobileMenu();
+    }
+  });
+});
+</script>
 
 </body>
-
 </html>
